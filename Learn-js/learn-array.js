@@ -57,3 +57,55 @@ var courseFilter = course1.filter(function (c) {
 });
 console.log(courseFilter);
 
+var h1Tag = document.querySelectorAll('h1')[0];
+console.log(h1Tag.nextElementSibling);
+
+var data = {
+    name: 'Pham Dat',
+    password: '0123',
+}
+
+//===========Hoc Promise==============//
+var promise = new Promise(
+    //Excutor
+    function (reslove, reject) {
+        //logic
+        //Thanh cong: reslove()
+        //That bai: reject()
+        reslove([{  //tai day se goi den ham then va in ra course
+            name: 'dat',
+        }]);
+    }
+);
+
+promise
+    .then(function (course) {
+        console.log(course);
+    })
+    .catch(function () {
+        console.log('fail');
+    })
+    .finally(function () {
+        console.log('Done');
+    });
+
+function sleep(ms){
+    return new Promise((reslove) =>{
+        setTimeout(reslove,ms);
+    });
+};
+
+sleep(1000)
+    .then(function(){
+        console.log(1);
+    });
+
+
+var stringArr = ['dat','duy','hai','huy'];
+stringArr.forEach(function(arr,index){
+    console.log(arr +' index: '+index);
+});
+
+for (const index in stringArr) {
+    console.log(stringArr[index] +' index: '+index);
+}
