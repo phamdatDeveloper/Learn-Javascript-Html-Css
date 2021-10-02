@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học Jquery</title>
+    <script src="jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <p id="the-p">Xin chào</p>
+    <table>
+        <tbody>
+            <td><input type="checkbox" name="checkbox" id="" ></td>
+            <td><input type="checkbox" name="checkbox" id="" ></td>
+            <td><input type="checkbox" name="checkbox" id="" ></td>
+            <td><input type="checkbox" name="checkbox" id=""></td>
+            <td><input type="checkbox" name="checkbox" id=""></td>
+            <td><input type="checkbox" name="checkbox" id=""></td>
+            <td><input type="checkbox" name="checkbox" id=""></td>
+            <td><input type="checkbox" name="checkbox" id=""></td>
+            <td><input type="text" name="abc" id="abc1" value = ""></td>
+            <td><input type="text" name="abc" id="abc1" value = "1"></td>
+            <td><input type="text" name="abc" id="abc1" value = "2"></td>
+            <td><input type="text" name="abc" id="abc1" value = "3"></td>
+            
+
+        </tbody>
+    </table>
+
+    <div id="div-1">
+        <input type="text" value="Xin chào">
+    </div>
+    <button id="checkSelect">Check select</button>
+    <table class="_tm">
+        <thead>...</thead>
+        <tbody>
+        <tr>
+            <td><input type="checkbox" name="sel" id="chk"/></td>
+            <td>
+                <select name="sel2" id="sel_1" title="Đây là title">
+                    <option value ></option>
+                    <option value="1" label="day la label" ></option>
+                </select>
+            </td>
+            <td><input type="button" name="btn_1"></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="sel" id="chk" checked/></td>
+            <td><input type="text" name="abc" id=""></td>
+            <td>
+                <!-- <select name="sel1" id="sel_1" title="Đây là title">
+                    <option value=""></option>
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                </select> -->
+            </td>
+            <td><input type="button" name="btn_1"></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="" id="chk1" checked/></td>
+            <td><input type="text" name="abc" id="text_1"></td>
+            <td>
+                
+                <!-- <select name="sel3" title="Đây là title">
+                    <option value="" title="abc"></option>
+                </select> -->
+            </td>
+            <td><label name="btn_1"></label></td>
+        </tr>
+        </tbody>
+        <tfoot>...</tfoot>
+    </table>
+    <div id="clone-table"></div>
+    <script type="text/javascript" src="/js/jquery-1.10.2.js"></script>
+    
+    <script type="text/javascript">
+        function test(a,b,c="1"){
+            var d = new Date(a);
+            var f = new Date(b);
+            if(d.getTime() < f.getTime()){
+                console.log("ngay a nho hon ngay b");
+            }
+            console.log("a: "+d.getTime()+" b: "+f+" c: "+c);
+            
+        }
+
+        jQuery( document ).ready( function ( $ )
+        {
+            $("#checkSelect").on("click",function(){
+                // var selectedRows = $( 'table._tm' ).find( 'tbody' ).find( "select[name^='sel']");
+                // $(selectedRows).each(function(i){
+                //     if(i==2){
+                //         var as = $(this).find("option")[0];
+                //         console.log("value: "+ $(this).val()+"length:"+$(as).attr("title"));
+                //     }
+                // });
+
+                // $(selectedRows).each(function(i){
+                //     console.log(i + 5);
+                // })
+                // console.log(selectedRows);
+                // var tr = $( 'table._tm' ).find( 'select[name^="sel"]' );
+                $( 'table._tm' ).find( 'select[name^="sel"]' ).each(function(i){
+                    $(this).attr("disabled","disabled");
+                    console.log("phat hien:"+i+"sel tên:"+$(this).attr("name"));
+
+                });
+                var text_1 = $("#text_1").val();
+                if(text_1 == ""){
+                    console.log("chuỗi rỗng độ dài:"+text_1.length);
+                }else{
+                    console.log("Có value, độ dài:"+text_1.length);
+                }
+                test(20090709,20090809,3);
+                // var sel = $(tr).find( "select[value ='1']");
+                // console.log(tr);
+            });
+            
+            // console.log(tr.length);
+            // $(selectedRows[0]).find("option:not(:first)").remove();
+            // $(selectedRows[0]).append($('<option>', {
+            //             value: 1,
+            //             label: 'My option'
+            //         }));
+            // var a = $(selectedRows[0]).val();
+            // console.log(a);    
+            // $(selectedRows).each(function(i){
+            //     //$(selectedRows[i]).empty();
+            // });
+            // var selRows = $(selectedRows).parent("tr");
+            // console.log(selRows);
+            // var row = selRows.parent("tr").index();
+            // console.log(row);
+            // $(selectedRows).each(function(index){
+            //     $(selectedRows[index]).find("input[type='text']").val("da them" + index);
+            // });
+
+            
+            // $("select[name^='sel']").on("change", function(){
+            //     console.log("select"+$(this).closest("tr").index()+" "+$(this).val());
+               
+            // });
+
+
+            // var tableClone = $( 'table._tm' ).clone();
+            // var getEleIds = $(tableClone).find("[name$='_1']");
+            // var indexId = 3;
+            // $(getEleIds).each(function(i){
+            //     var newName = $(this).attr("name").replace("_1","_"+indexId);
+
+            //     $(this).attr("name",newName);
+            // });
+
+            // $("#clone-table").append(tableClone);
+
+            // $("select[name^='sel']").on("change", function(){
+            //     var getTr = $(this).closest("tr");
+            //     console.log($(getTr).index());
+            // });
+
+            // var selectedRows = $( 'table._tm' ).find( 'tr');
+            // var hasSel,valueSel;
+            // $(selectedRows).each(function(i){
+            //     var check = $(selectedRows[i]).find("select[name^='sel']");
+            //     if(check.length > 0){
+            //         hasSel = true;
+            //         valueSel =$(selectedRows[i]).find("select[name^='sel']").attr("label");
+            //     }else{
+            //         hasSel = false;
+            //         valueSel ="";
+            //     }
+            //     console.log("index: "+ $(this).index() + "có select:"+ hasSel +"value:" +valueSel);
+            // });
+
+           
+
+        } );
+    
+    </script>
+</body>
+
+</html>
