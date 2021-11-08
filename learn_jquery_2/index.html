@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.0.min.js"></script>
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+        </style>
+</head>
+<body>
+    <div>
+        
+        <form>
+            <!--Table1-->
+            <table style="width: 50%;" id="table_1">
+                <thead>
+                    <th>Cột 1</th>
+                    <th>Cột 2</th>
+                    <th>Cột 3</th>
+                    <th>Cột 4</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label>Đây là label</label>
+                            <a>Đây là a</a>
+                        </td>
+                        <td>
+                            <input type="button" name="btn_1" value="Button">
+                        </td>
+                        <td>
+                            <select name="selA_1" id="selA_1">
+                                <option value="" label=""></option>
+                                <option value="A" label="A"></option>
+                                <option value="B" label="B"></option>
+                                <option value="C" label="C"></option>
+                            </select>
+                            <label id="label_1">2014/04/06</label>
+                        </td>
+                        <td>
+                            <select name="selB_1" id="selB_1">
+                                <option value="" label=""></option>
+                                <option value="A" label="A"></option>
+                                <option value="B" label="B"></option>
+                                <option value="C" label="C"></option>
+                            </select>
+                            <div id="div_1">
+                                <input type="hidden" name="hdnDiv" value="hdn 1">
+                            </div>
+                            <div id="div_2">
+                                <input type="hidden" name="hdnDiv" value="hdn 2">
+                            </div>
+                            <div id="div_3">
+                                <input type="hidden" name="hdnDiv" value="hdn 3">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Đây là label</label>
+                            <a>Đây là b</a>
+                        </td>
+                        <td>
+                            <input type="button" name="btn_2" value="Button">
+                        </td>
+                        <td>
+                            <select name="selA_2" id="selA_2">
+                                <option value="" label=""></option>
+                                <option value="A" label="A"></option>
+                                <option value="B" label="B"></option>
+                                <option value="C" label="C"></option>
+                            </select>
+                            <label id="label_2">2014/04/06</label>
+                        </td>
+                        <td>
+                            <select name="selB_2" id="selB_2">
+                                <option value="" label=""></option>
+                                <option value="A" label="A"></option>
+                                <option value="B" label="B"></option>
+                                <option value="C" label="C"></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Đây là label</label>
+                            <a>Đây là d</a>
+                        </td>
+                        <td>
+                            <input type="button" name="btn_1" value="Button">
+                        </td>
+                        <td>
+                            <select name="selA_3" id="selA_3">
+                                <option value="" label=""></option>
+                                <option value="A" label="A"></option>
+                                <option value="B" label="B"></option>
+                                <option value="C" label="C"></option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="selB_3" id="selB_3">
+                                <option value="" label=""></option>
+                                <option value="A" label="A"></option>
+                                <option value="B" label="B"></option>
+                                <option value="C" label="C"></option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+     <div>   
+        <a href="javascript: void(0);" id="lnk_1">Đây là link 1</a>
+        <input type="hidden" id="hdn_1" value="hidden 1">
+    </div>
+
+    <div>   
+        <a href="javascript: void(0);" id="lnk_2">Đây là link 2</a>
+        <input type="hidden" id="hdn_2" value="hidden 2">
+    </div>
+
+    <div>   
+        <a href="javascript: void(0);" id="lnk_3">Đây là link 3</a>
+        <input type="hidden" id="hdn_3"  value="123">
+    </div>
+    </div>
+
+    <textarea name="" id="textArea" cols="13" rows="5" wrap="hard"></textarea>
+
+
+    <textarea name="limit" id="limit" cols="30" rows="10"></textarea>
+    
+    <a id="lnkA_1">Day la lnk</a>
+    <script>
+        
+        console.log($("a[id^='lnkA']").text());
+
+      const text = $('#limit');
+      const CHAR_LIMIT_PER_LINE = 13;
+      const LINES_LIMIT = 5;
+
+      $('#limit').on("keyup",function(){
+        console.log($('#limit').val());
+      });
+
+
+      text.addEventListener('keyup', (e) => {
+        const lines = e.target.value.split('\n');
+        for (let i = 0; i < lines.length; i++) {
+          if (lines[i].length < CHAR_LIMIT_PER_LINE) continue;
+          lines[i] = lines[i].substring(0, CHAR_LIMIT_PER_LINE);
+          lines[i + 1] = `${lines[i].substring(CHAR_LIMIT_PER_LINE + 1)}${lines[i + 1] || ''}`;
+        }
+        text.value = lines.slice(0, LINES_LIMIT).join('\n');
+      });
+    </script>
+    <script >
+
+    $("body").on("click", "a[id^='lnk_']", function(){
+        var _div = $(this).closest("div");
+        console.log($(_div).find("input[id^='hdn_']").val());
+    });
+    var check1 = $("#table_1").find("tr");
+
+    $(check1).each(function(i){
+
+        $(this).find("div[id^='div_']").each(function(j){
+
+            console.log(j+": "+ $(this).find("input[name^='hdnDiv']").val());
+        });
+
+    });
+
+
+    var check = $("#selA_3").closest("tr").find("input[name='btn_12']");
+    console.log(parseInt($("#hdn_3").val()) > 2);
+    console.log($("#hdn_3").val() > 2);
+   
+    process = {
+
+        function1 : function(elem){
+            var div = $(elem).closest("tr").index();
+            console.log(div);
+        },
+
+    };
+ 
+    var a = 1,
+        b = 21,
+        c = 32;
+
+    if(a == 2){
+        console.log("bằng 1");
+    }else if(b == 2){
+        console.log("bằng 2");
+    }else if(c == 3){
+        console.log("bằng 3");
+    }else{
+        console.log("còn lại");
+    }
+
+    // $("input[name^='btn_']").on("click", function(){
+    //     process.function1(this);
+    // });
+
+    // function transStringToDate(str){
+    //     var date, month, year;
+
+    //     if(str.length == 8){
+    //          year = dateStr.slice(0,4);
+    //          month = dateStr.slice(4,6);
+    //          day = dateStr.slice(6,8);
+    //     }else if(str.length == 6){
+    //         year = dateStr.slice(0,4);
+    //          month = dateStr.slice(4,5);
+    //          day = dateStr.slice(5,6);
+    //     }
+    // }
+
+    // $("#table_1").find("tr").each(function(i){
+    //     if($(this).find("label[id^='label_']").html() != undefined){
+    //         var dateStr = $(this).find("label[id^='label_']").html().replaceAll("/","");
+    //         var year = dateStr.slice(0,4);
+    //         var month = dateStr.slice(4,6);
+    //         var day = dateStr.slice(6,8);
+            
+    //         var date = new Date();
+    //         console.log("tr thu "+i+" co label:" + date);
+    //     }
+    // })
+
+    // var dateStr = $("label[id^='label_'").html().replaceAll("/","");
+    // // console.log(dateStr);
+
+    // var date = new Date($("label[id^='label_'").html());
+    // var date2 =new Date("2014/03/01");
+    // console.log("Truoc khi tru 1:" + (date > date2) );
+    // date.setDate(date2.getDate() - 1);
+    // console.log("Sau khi tru 1:" +date.getMonth());
+
+    // var str = $("#ymd").val().slice(0,4) +"/" + $("#ymd").val().slice(4,6) +"/"+$("#ymd").val().slice(6,8);
+    // var str2 =$("#ymd2").val();
+    // console.log(str);
+    // console.log(new Date(str) < new Date(str2));
+    </script>
+</body>
+</html>

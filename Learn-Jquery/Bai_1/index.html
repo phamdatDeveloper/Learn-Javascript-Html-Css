@@ -9,6 +9,8 @@
 </head>
 <body>
     <p id="the-p">Xin chào</p>
+    <input type="button" id="btnOpenFile">
+    <input type="file" id="openFile" style="display: none;">
     <table>
         <tbody>
             <td><input type="checkbox" name="checkbox" id="" ></td>
@@ -32,32 +34,52 @@
         <input type="text" value="Xin chào">
     </div>
     <button id="checkSelect">Check select</button>
+    <button id="setValSel">Set</button>
     <table class="_tm">
         <thead>...</thead>
         <tbody>
-        <tr>
+        <tr id="day la id 2">
             <td><input type="checkbox" name="sel" id="chk"/></td>
             <td>
-                <select name="sel2" id="sel_1" title="Đây là title">
+                <select name="sel2" id="sel_2" title="Đây là title">
                     <option value ></option>
                     <option value="1" label="day la label" ></option>
+                </select>
+
+                <select name="sel4" id="sel_5" title="Đây là title">
+                    <option value ></option>
+                    <option value="1" label="day la label" selected ></option>
+                </select>
+            </td>
+            <td>
+                <select name="g" id="g" title="Đây là title">
+                    <option value=""></option>
+                    <option value="1" >1</option>
+                    <option value="2">2</option>
                 </select>
             </td>
             <td><input type="button" name="btn_1"></td>
         </tr>
-        <tr>
+        <tr id = "day la id 1">
             <td><input type="checkbox" name="sel" id="chk" checked/></td>
             <td><input type="text" name="abc" id=""></td>
             <td>
-                <!-- <select name="sel1" id="sel_1" title="Đây là title">
+                <select name="sel1" id="sel_1" title="Đây là title">
                     <option value=""></option>
-                    <option value="1" selected>1</option>
+                    <option value="1" >1</option>
                     <option value="2">2</option>
-                </select> -->
+                </select>
+            </td>
+            <td>
+                <select name="g" id="g" title="Đây là title">
+                    <option value=""></option>
+                    <option value="1" >1</option>
+                    <option value="2">2</option>
+                </select>
             </td>
             <td><input type="button" name="btn_1"></td>
         </tr>
-        <tr>
+        <tr id="tr1">
             <td><input type="checkbox" name="" id="chk1" checked/></td>
             <td><input type="text" name="abc" id="text_1"></td>
             <td>
@@ -66,7 +88,9 @@
                     <option value="" title="abc"></option>
                 </select> -->
             </td>
-            <td><label name="btn_1"></label></td>
+            <td><label name="btn_1">Label btn_1</label>
+                <input type="checkbox" name="checkbox123" id="checkbox1">
+            </td>
         </tr>
         </tbody>
         <tfoot>...</tfoot>
@@ -84,9 +108,52 @@
             console.log("a: "+d.getTime()+" b: "+f+" c: "+c);
             
         }
+        console.log($("label[name^='btn_']").html());
 
+
+      
         jQuery( document ).ready( function ( $ )
         {
+            console.log("gia tri tr la:"+$("input[name='checkbox123']").closest("tr").attr("id"));
+
+            $("#btnOpenFile").on("click", function(){
+                $("#openFile").click();
+
+                console.log("value file:"+$("#openFile").val());
+
+            });
+
+            $("#openFile").on("change",function(){
+                console.log("Input đã thay đổi value:"+$("#openFile").val());
+            });
+
+            $( 'table._tm' ).find( 'select[name^="sel"]' ).each(function(i){
+                    $(this).attr("disabled","disabled");
+                    console.log("phat hien:"+i+"sel tên:"+$(this).attr("name"));
+
+                });
+
+            $("select[name^='sel']").on("change", function(){
+                var div= $(this).closest("tr");
+                if($(div).prop("id") == "day la id 1"){
+                    console.log("giá trị trùng nhau");
+                }
+                console.log("gia tri la:"+ $(div).prop("id"));
+                if($(this).val() =="1"){
+                    $(div).find("select[id^='g']").val("1");
+                    $(div).find("select[id^='g']").prop("disabled",true);
+                   console.log("a");
+                }
+            });
+            $("#setValSel").on("click", function(){
+                $("#sel_2").val("1").change();
+                // $("#sel_2").change();
+                var checkboxCheck =  $("input[name^='checkbox1']").is(":checked") ? 1 : 0;
+                var checkboxDisabled =  $("input[name^='checkbox1']").is(":disabled") ? 1 : 0;
+                console.log("giá trị của checkbox:"+checkboxCheck);
+                console.log("giá trị của checkbox bị disable:"+checkboxDisabled);
+                console.log("Lấy đại giá trị:"+ $("input[name='checkbox12345']").val());
+            });
             $("#checkSelect").on("click",function(){
                 // var selectedRows = $( 'table._tm' ).find( 'tbody' ).find( "select[name^='sel']");
                 // $(selectedRows).each(function(i){
@@ -102,7 +169,7 @@
                 // console.log(selectedRows);
                 // var tr = $( 'table._tm' ).find( 'select[name^="sel"]' );
                 $( 'table._tm' ).find( 'select[name^="sel"]' ).each(function(i){
-                    $(this).attr("disabled","disabled");
+                    $(this).attr("disabled",false);
                     console.log("phat hien:"+i+"sel tên:"+$(this).attr("name"));
 
                 });
@@ -115,8 +182,18 @@
                 test(20090709,20090809,3);
                 // var sel = $(tr).find( "select[value ='1']");
                 // console.log(tr);
+                
             });
-            
+            var arr = [];
+            var obj ={
+                a : 1,
+                b : 2
+            };
+            obj["abc"] = 5;
+            arr.push(obj);
+            arr.push(obj);
+            console.log(JSON.stringify(arr));
+
             // console.log(tr.length);
             // $(selectedRows[0]).find("option:not(:first)").remove();
             // $(selectedRows[0]).append($('<option>', {
